@@ -7,4 +7,4 @@ class Solution:
                     return [i,j]
 
 solution = Solution()
-print solution.twoSum([3,2,4],6)
+print(solution.twoSum([3,2,4],6))
