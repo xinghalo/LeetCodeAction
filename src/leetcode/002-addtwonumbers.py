@@ -7,7 +7,15 @@ class ListNode(object):
 
 
 class Solution(object):
+
     def append(self, listNode, x):
+        """
+        给ListNode追加元素
+
+        :param listNode:
+        :param x:
+        :return:
+        """
         while listNode.next != None:
             listNode = listNode.next
         listNode.next = ListNode(x)
@@ -17,26 +25,30 @@ class Solution(object):
         head = None
 
         self.carry = 0  # 进位项
+
+        # 以l1为主表进行遍历加和
         while l1 != None:
 
+            # 累加
             if l2 != None:
                 sum = l1.val + l2.val + self.carry
-                l2 = l2.next
+                l2 = l2.next # 当l2的next不为空时，l2向后移动
             else:
                 sum = l1.val + self.carry
 
-            self.carry = 0
+            # 保存 并 计算下一次进位
             head = self.add(head, sum)
 
             l1 = l1.next
 
         while l2 != None:
+            # 累加
             if self.carry == 1:
                 sum = l2.val + 1
             else:
                 sum = l2.val
 
-            self.carry = 0
+            # 保存 并 计算下一次进位
             self.add(head, sum)
 
             l2 = l2.next
@@ -47,6 +59,15 @@ class Solution(object):
         return head
 
     def add(self, head, sum):
+        """
+        计算当前的元素和
+
+        :param head:
+        :param sum:
+        :return:
+        """
+        self.carry = 0
+
         if sum > 9:
             self.carry = 1
             sum = sum % 10
